@@ -17,8 +17,8 @@ function LogoPlette({ onHandleInputChange,formData }) {
         {Colors.map((palette, index) => (
           <div
             key={index}
-            className={`flex p-1 cursor-pointer ${
-              selectedOption === palette.name ? "border rounded-lg border-primary" : ""
+            className={`flex p-1 cursor-pointer border-2 rounded-lg hover:border-black ${
+              selectedOption === palette.name ? "border-black" : "border-gray-300"
             }`}
             onClick={() => {
               setSelectedOption(palette.name);
