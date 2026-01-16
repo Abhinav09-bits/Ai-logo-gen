@@ -4,6 +4,11 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
     const { userEmail } = await request.json()
+
+    if (!userEmail) {
+        return NextResponse.json({ error: 'User email is required' }, { status: 400 });
+    }
+
     try {
         const docref = doc(db, 'users', userEmail);
         // First, get current credits

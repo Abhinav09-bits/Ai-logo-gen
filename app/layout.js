@@ -22,8 +22,23 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
+  if (!publishableKey) {
+    return (
+      <html lang="en">
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex items-center justify-center min-h-screen bg-gray-100`}>
+          <div className="p-8 bg-white shadow-lg rounded-xl text-center">
+            <h1 className="text-2xl font-bold text-red-600 mb-4">Configuration Required</h1>
+            <p className="text-gray-600">Please set the <code className="bg-gray-200 px-1 rounded">NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY</code> environment variable to proceed with deployment.</p>
+          </div>
+        </body>
+      </html>
+    );
+  }
+
   return (
-    <ClerkProvider>
+    <ClerkProvider publishableKey={publishableKey}>
       <html lang="en">
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
